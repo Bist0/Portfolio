@@ -8,12 +8,50 @@ const EMAILJS_PUBLIC_KEY = "wYcOGuCVpoyNGoPQR";
 import PHOTO from "./assets/ishwor.jpg";
 
 const SKILLS = [
-  { name: "React / Next.js", pct: 93, icon: "⚛️" },
-  { name: "JavaScript / TypeScript", pct: 90, icon: "🟨" },
-  { name: "Node.js / Express", pct: 85, icon: "🟢" },
-  { name: "HTML & CSS / Tailwind", pct: 95, icon: "🎨" },
-  { name: "MongoDB / PostgreSQL", pct: 78, icon: "🗄️" },
-  { name: "Git / Docker / CI-CD", pct: 75, icon: "🛠️" },
+  {
+    name: "React / Next.js", pct: 93,
+    logos: [
+      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
+    ],
+  },
+  {
+    name: "JavaScript / TypeScript", pct: 90,
+    logos: [
+      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+    ],
+  },
+  {
+    name: "Node.js / Express", pct: 85,
+    logos: [
+      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
+    ],
+  },
+  {
+    name: "HTML & CSS / Tailwind", pct: 95,
+    logos: [
+      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
+      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
+      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+    ],
+  },
+  {
+    name: "MongoDB / PostgreSQL", pct: 78,
+    logos: [
+      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
+      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
+    ],
+  },
+  {
+    name: "Git / Docker / CI-CD", pct: 75,
+    logos: [
+      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
+      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
+      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
+    ],
+  },
 ];
 
 const EDUCATION = [
@@ -488,21 +526,34 @@ export default function App() {
               <h2 style={{ fontSize: "clamp(1.8rem,5vw,2.8rem)", fontWeight: 900, letterSpacing: "-.03em", marginBottom: ".5rem", color: "#f1f5f9" }}>Tech Stack</h2>
               <div style={{ width: "36px", height: "2px", background: "#00ffe7", marginBottom: "2.5rem" }} />
             </Reveal>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(240px,1fr))", gap: "1rem" }} className="skills-grid">
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(160px,1fr))", gap: "1rem" }} className="skills-grid">
               {SKILLS.map((s, i) => (
                 <Reveal key={s.name} delay={i * .07}>
                   <TiltCard style={{ height: "100%" }}>
-                    <div style={{ background: "rgba(255,255,255,.025)", border: "1px solid rgba(255,255,255,.06)", borderRadius: "14px", padding: "1.3rem", height: "100%" }}>
-                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: ".3rem" }}>
-                        <div style={{ display: "flex", alignItems: "center", gap: ".5rem" }}>
-                          <span style={{ fontSize: "1.2rem" }}>{s.icon}</span>
-                          <span style={{ fontWeight: 700, fontSize: "clamp(.88rem,1.2vw,1rem)", color: "#e2e8f0" }}>{s.name}</span>
-                        </div>
-                        <span style={{ fontFamily: "'DM Mono',monospace", fontSize: "clamp(.78rem,1vw,.9rem)", color: "#00ffe7", fontWeight: 600 }}>{s.pct}%</span>
+                    <div style={{ background: "rgba(255,255,255,.025)", border: "1px solid rgba(255,255,255,.06)", borderRadius: "14px", padding: "1.6rem 1.2rem", height: "100%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: ".8rem", textAlign: "center", transition: "border-color .3s", cursor: "default" }}
+                      onMouseEnter={e => e.currentTarget.style.borderColor = "rgba(0,255,231,.3)"}
+                      onMouseLeave={e => e.currentTarget.style.borderColor = "rgba(255,255,255,.06)"}
+                    >
+                      {/* Logo icons */}
+                      <div style={{ display: "flex", gap: "8px", justifyContent: "center", flexWrap: "wrap" }}>
+                        {s.logos.map((logo, li) => (
+                          <img
+                            key={li}
+                            src={logo}
+                            alt=""
+                            style={{
+                              width: "40px",
+                              height: "40px",
+                              objectFit: "contain",
+                              filter: logo.includes("nextjs") || logo.includes("express") || logo.includes("github") ? "invert(1)" : "none",
+                              transition: "transform .2s",
+                            }}
+                            onMouseEnter={e => e.currentTarget.style.transform = "scale(1.2) rotate(-5deg)"}
+                            onMouseLeave={e => e.currentTarget.style.transform = "scale(1) rotate(0deg)"}
+                          />
+                        ))}
                       </div>
-                      <div style={{ height: "4px", background: "rgba(255,255,255,.06)", borderRadius: "99px", overflow: "hidden", marginTop: ".8rem" }}>
-                        <div className="skill-fill" style={{ width: `${s.pct}%` }} />
-                      </div>
+                      <span style={{ fontWeight: 700, fontSize: "clamp(.82rem,1.1vw,.95rem)", color: "#e2e8f0", lineHeight: 1.3 }}>{s.name}</span>
                     </div>
                   </TiltCard>
                 </Reveal>
