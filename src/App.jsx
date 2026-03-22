@@ -2219,7 +2219,7 @@ export default function App() {
                   },
                   {
                     label: "LinkedIn",
-                    href: "https://linkedin.com/in/ishworbist",
+                    href: "https://www.linkedin.com/in/ishwor-bist",
                     color: "#0a66c2",
                     svg: (
                       <svg
